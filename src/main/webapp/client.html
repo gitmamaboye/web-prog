@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Numerical Chat</title>
+</head>
+<body><form>
+    <input id="message" type="text">
+    <input onclick="wsSendMessage();" value="Send" type="button">
+    <input onclick="wsCloseConnection();" value="Disconnect" type="button">
+</form>
+<br>
+<textarea id="textMessage" rows="5" cols="30"></textarea>
+<script type="text/javascript">
+    var webSocket = new WebSocket("ws://localhost:8080/web_prog_war/numericalchat");
+    var textMessage = document.getElementById("textMessage");
+    textMessage.value = "";
+    var message = document.getElementById("message");
+    webSocket.onopen = function(message){ wsOpen(message);};
+    webSocket.onmessage = function(message){ wsGetMessage(message);};
+    webSocket.onclose = function(message){ wsClose(message);};
+    webSocket.onerror = function(message){ wsError(message);};
+    function wsOpen(){
+        textMessage.value += "Connected ... \n";
+    }
+    function wsSendMessage(){
+        webSocket.send(message.value);
+       // textMessage.value += "Message sended to the server : " + message.value + "\n";
+      //  message.value = "";
+    }
+    function wsCloseConnection(){
+        webSocket.close();
+    }
+    function wsGetMessage(message){
+        textMessage.value += "Received Message: " + message.data + " from  \n";
+    }
+    function wsClose(message){
+        textMessage.value += "Disconnect ... \n";
+    }
+
+    function wsError(message){
+        textMessage.value += "Error ... \n";
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+  <servlet>
+    <description></description>
+    <display-name>MyServletHtml</display-name>
+    <servlet-name>MyServletHtml</servlet-name>
+    <servlet-class>servlets.MyServletHtml</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyServletHtml</servlet-name>
+    <url-pattern>/MyServletHtml</url-pattern>
+  </servlet-mapping>
+   <display-name>web-prog</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>test.html</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>MyServletXml</display-name>
+    <servlet-name>MyServletXml</servlet-name>
+    <servlet-class>servlets.MyServletXml</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyServletXml</servlet-name>
+    <url-pattern>/MyServletXml</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MyServletJpeg</display-name>
+    <servlet-name>MyServletJpeg</servlet-name>
+    <servlet-class>servlets.MyServletJpeg</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyServletJpeg</servlet-name>
+    <url-pattern>/MyServletJpeg</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ChooseColor</display-name>
+    <servlet-name>ChooseColor</servlet-name>
+    <servlet-class>blatt03.ChooseColor</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChooseColor</servlet-name>
+    <url-pattern>/ChooseColor</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <description>JAX-RS declaration method 1</description>
+  <servlet-name>JAX-RS</servlet-name>
+  <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+  <init-param>
+    <param-name>jersey.config.server.provider.packages</param-name>
+    <!-- adjust package name of Restful classes here -->
+    <param-value>rest</param-value>
+  </init-param>
+
+    <init-param>
+      <param-name>jersey.config.server.mvc.templateBasePath.jsp</param-name>
+      <param-value>/WEB-INF/jsp</param-value>
+    </init-param>
+
+  <init-param>
+    <param-name>jersey.config.server.provider.classnames</param-name>
+    <param-value>org.glassfish.jersey.server.mvc.jsp.JspMvcFeature</param-value>
+  </init-param>
+  <init-param>
+    <param-name>jersey.config.server.tracing</param-name>
+    <param-value>ALL</param-value>
+  </init-param>
+  <load-on-startup>1</load-on-startup>
+
+
+</servlet>
+<servlet-mapping>
+  <servlet-name>JAX-RS</servlet-name>
+  <!-- url prefix of Rest services -->
+  <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+
+</web-app>
